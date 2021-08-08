@@ -1,0 +1,34 @@
+  
+# ワークフロー名
+name: takujoshiki
+
+# 実行タイミング
+on:
+ schedule:
+   - cron: '00 03 * * *'
+ push:
+
+# 実行内容
+jobs:
+  build:
+    # Ubuntsuで実行
+    runs-on: ubuntu-latest
+    
+    # 実行する処理＆コマンド
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          # pip更新
+          python -m pip install --upgrade pip
+          # 必要なパッケージインストール
+          pip install bs4
+          pip install requests
+      - name: Run script
+        run: |
+          # main.pyの実行
+          python main.py ${{ secrets.GOOGLE_SPREADSHEET_URL }}
