@@ -10,7 +10,7 @@ JST = timezone(timedelta(hours=+9))
 trans_table = str.maketrans(
     {
         "　": " ", 
-        "▼": "。", 
+#        "▼": "。", 
         "０": "0", 
         "１": "1", 
         "２": "2", 
