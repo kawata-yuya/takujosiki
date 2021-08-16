@@ -9,7 +9,8 @@ SECRET_URL = sys.argv[1]
 def main():
     takujoshiki = Takujoshiki()
     content = takujoshiki.run()
-    send_sheet(content, SECRET_URL)
+    if content is not None:
+        send_sheet(content, SECRET_URL)
 
 
 
