@@ -28,6 +28,7 @@ trans_table = str.maketrans(
 class Takujoshiki():
     def __init__(self):
         self.content_text = ''
+        self.title = ''
         self.ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) '\
             'AppleWebKit/537.36 (KHTML, like Gecko) '\
             'Chrome/55.0.2883.95 Safari/537.36 '
@@ -37,6 +38,7 @@ class Takujoshiki():
         html = urllib.request.urlopen(r)
         soup = BeautifulSoup(html, "html.parser")
     
+        self.title = soup.find('h1', class_='newsTitle').text
         sentence = soup.find("p").text
         sentence = sentence.translate(trans_table)
         sentence = re.sub(r"（.*?）", "", sentence)
@@ -72,4 +74,4 @@ class Takujoshiki():
     def run(self):
         self.url_getter()
         self.is_today()
-        return self.content_text
+        return self.content_text, self.title
