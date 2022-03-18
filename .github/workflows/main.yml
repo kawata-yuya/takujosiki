@@ -4,8 +4,8 @@ name: takujoshiki
 
 # 実行タイミング
 on:
- schedule:
-   - cron: '00 03 * * *'
+# schedule:
+#   - cron: '00 03 * * *'
  push:
 
 # 実行内容
